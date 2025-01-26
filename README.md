@@ -1,2 +1,2 @@
-# perception-loco.github.io
-View the [webpage](https://perception-loco.github.io/) here.
+# perceptive-loco.github.io
+View the [webpage](https://perceptive-loco.github.io/) here.
