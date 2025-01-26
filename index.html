@@ -61,21 +61,23 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">REPRODUCTION: Learning Robust Perceptive Locomotion<br> for Quadrupedal Robots</h1>
+          <h1 class="title is-1 publication-title">REPRODUCTION: Learning Robust Perceptive<br> Locomotion for Quadrupedal Robots</h1>
+          
+          <!-- <div class="column">
+              <image src="./static/images/SYSU_logo.jpg" style="width: 25%;"></image>
+          </div> -->
+          
+          <div class="is-size-5 publication-authors">
+            Reference: Learning robust perceptive locomotion for quadrupedal robots in the wild [Sciecne Robotics 2022]<br>
+            by Takahiro Miki, Joonho Lee, Jemin Hwangbo, Lorenz Wellhausen, Vladlen Koltun, Marco Hutter
+          </div>
+          <p>
+            <br>
+          </p>
           <div class="is-size-4 publication-authors">
             <span class="author-block">
               <a href="https://zhiyuanxiao.github.io/">Zhiyuan Xiao</a>
             </span>
-          </div>
-          <!-- <div class="column">
-              <image src="./static/images/SYSU_logo.jpg" style="width: 25%;"></image>
-          </div> -->
-          <p>
-            <br>
-          </p>
-          <div class="is-size-5 publication-authors">
-            Reference: Learning robust perceptive locomotion for quadrupedal robots in the wild [Sciecne Robotics 2022]<br>
-            by Takahiro Miki, Joonho Lee, Jemin Hwangbo, Lorenz Wellhausen, Vladlen Koltun, Marco Hutter
           </div>
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -97,7 +99,7 @@
                   <span class="icon">
                       <i class="fas fa-newspaper"></i>
                   </span>
-                  <span>Science Robotics</span>
+                  <span>Oringal Paper</span>
                 </a>
               </span>
 
@@ -211,7 +213,7 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Numerous locomotion controllers have been designed based on Reinforcement Learning (RL) to facilitate blind quadrupedal locomotion traversing challenging terrains.  Nevertheless, locomotion control is still a challenging task for quadruped robots traversing diverse terrains amidst unforeseen disturbances. Recently, privileged learning has been employed to learn reliable and robust quadrupedal locomotion over various terrains based on a teacher-student architecture. However, its one-encoder structure is not adequate in addressing external force perturbations. The student policy would experience inevitable performance degradation due to the feature embedding discrepancy between the feature encoder of the teacher policy and the one of the student policy. Hence, this paper presents a privileged learning framework with multiple feature encoders and a residual policy network for robust and reliable quadruped locomotion subject to various external perturbations. The multi-encoder structure can decouple latent features from different privileged information, ultimately leading to enhanced performance of the learned policy in terms of robustness, stability, and reliability. The efficiency of the proposed feature encoding module is analyzed in depth using extensive simulation data. The introduction of the residual policy network helps mitigate the performance degradation experienced by the student policy that attempts to clone the behaviors of a teacher policy. The proposed framework is evaluated on a Unitree GO1 robot, showcasing its performance enhancement over the state-of-the-art privileged learning algorithm through extensive experiments conducted on diverse terrains. Ablation studies are conducted to illustrate the efficiency of the residual policy network.
+            Legged robots that can operate autonomously in remote and hazardous environments will greatly increase opportunities for exploration into underexplored areas. Exteroceptive perception is crucial for fast and energy-efficient locomotion: Perceiving the terrain before making contact with it enables planning and adaptation of the gait ahead of time to maintain speed and stability. However, using exteroceptive perception robustly for locomotion has remained a grand challenge in robotics. Snow, vegetation, and water visually appear as obstacles on which the robot cannot step or are missing altogether due to high reflectance. In addition, depth perception can degrade due to difficult lighting, dust, fog, reflective or transparent surfaces, sensor occlusion, and more. For this reason, the most robust and general solutions to legged locomotion to date rely solely on proprioception. This severely limits locomotion speed because the robot has to physically feel out the terrain before adapting its gait accordingly. Here, we present a robust and general solution to integrating exteroceptive and proprioceptive perception for legged locomotion. We leverage an attention-based recurrent encoder that integrates proprioceptive and exteroceptive input. The encoder is trained end to end and learns to seamlessly combine the different perception modalities without resorting to heuristics. The result is a legged locomotion controller with high robustness and speed. The controller was tested in a variety of challenging natural and urban environments over multiple seasons and completed an hour-long hike in the Alps in the time recommended for human hikers.
           </p>
         </div>
       </div>
@@ -219,33 +221,73 @@
   </div>
 </section>
 
-<!-- Velocity Tracking -->
-<!-- <section class="section">
+<!-- Training Curves -->
+<section class="section">
   <div class="container">
-    <h2 class="title is-2" style="text-align: center;">Velocity Tracking</h2>
-    <div class="columns is-centered">
-      <div class="column is-full-width is-centered has-text-centered">
-        <video controls autoplay loop muted playsinline src="./resources/velocity_tracking/video1.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
-      </div>
-      <div class="column is-full-width is-centered has-text-centered">
-        <video controls autoplay loop muted playsinline src="./resources/velocity_tracking/video2.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+    <h2 class="title is-2" style="text-align: center;">Elevation Map Reconstruction</h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+        <p>
+          To assess the effectiveness of the attention mechanism in reconstructing privileged exteroceptive information, 
+          we conduct a simulation experiment on a quadruped robot. 
+          Multiple videos are recorded for analysis, where dots underneath the robot represent either: 
+          <ol>
+            <li><u>the privileged exteroceptive information</u>, or</li>
+            <li><u>the raw and noisy exteroceptive information</u> that the student policy can directly obtain from the LiDAR sensor, or</li>
+            <li><u>the reconstructed exteroceptive information</u>.</li>
+          </ol>
+        </p>
+        </div>
       </div>
     </div>
     <div class="columns is-centered">
       <div class="column is-full-width is-centered has-text-centered">
-        <video controls autoplay loop muted playsinline src="./resources/velocity_tracking/video3.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+        <div class="is-size-4">
+          <p>
+            Ground Truth
+          </p>
+        </div>
+        <video controls autoplay loop muted playsinline src="./resources/videos/RNNAttn_noise_1_standard_test_ground_truth_x264.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
       </div>
       <div class="column is-full-width is-centered has-text-centered">
-        <video controls autoplay loop muted playsinline src="./resources/velocity_tracking/video4.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+        <div class="is-size-4">
+          <p>
+            Raw (noisy)
+          </p>
+        </div>
+        <video controls autoplay loop muted playsinline src="./resources/videos/RNNAttn_noise_1_standard_test_noisy_x264.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+        <p>
+          Two videos below shows the reconstruted exteroceptive information
+        </p>
+        </div>
       </div>
     </div>
     <div class="columns is-centered">
       <div class="column is-full-width is-centered has-text-centered">
-        <video controls autoplay loop muted playsinline src="./resources/velocity_tracking/video0.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+        <div class="is-size-4">
+          <p>
+            
+          </p>
+        </div>
+        <video controls autoplay loop muted playsinline src="./resources/videos/RNN_noise_1_standard_test_recon_x264.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
+      </div>
+      <div class="column is-full-width is-centered has-text-centered">
+        <div class="is-size-4">
+          <p>
+            
+          </p>
+        </div>
+        <video controls autoplay loop muted playsinline src="./resources/videos/RNNAttn_noise_1_standard_test_recon_x264.mp4" poster="./resources/loading-icon.gif" style="border: 1px solid #bbb; border-radius: 10px; margin: 1.0%;"></video>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 <!-- Traverse Different Terrains -->
 <!-- <section class="section">
