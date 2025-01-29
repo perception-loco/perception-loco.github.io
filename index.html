@@ -92,7 +92,7 @@
             <div class="publication-links">
 
               <!-- PDF Link. Please fill in the href to link PDF. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href=""
                    class="external-link button is-normal is-rounded is-dark" target="_blank">
                   <span class="icon">
@@ -100,7 +100,7 @@
                   </span>
                   <span>PDF</span>
                 </a>
-              </span>
+              </span> -->
 
               <span class="link-block">
                 <a href="https://www.science.org/doi/10.1126/scirobotics.abk2822"
@@ -143,16 +143,6 @@
                     <span>Poster</span>
                 </a>
               </span> -->
-
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="" title="Not Available Now" class="external-link button is-normal is-rounded is-dark" target="_blank">
-                  <span class="icon">
-                      <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg=""><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
             </div>
           </div>
         </div>
@@ -211,7 +201,15 @@
         <h2 class="title is-2">Methodology</h2>
         <div class="content has-text-justified">
           <p>
-            [Undone]
+            The key component is a recurrent encoder that <strong>combines proprioception and exteroception into an integrated belief state</strong>. 
+            The encoder is trained in simulation to capture ground-truth information about the terrain given exteroceptive observations that may be incomplete, biased, and noisy. 
+            The belief state encoder is trained end-to-end to integrate proprioceptive and exteroceptive data without resorting to heuristics. 
+            It learns to take advantage of the foresight afforded by exteroception to plan footholds and accelerate locomotion when exteroception is reliable, and can seamlessly fall back to robust proprioceptive locomotion when needed.
+          </p>
+          <p>
+            The controller is trained via privileged learning. A teacher policy is first trained via Reinforcement Learning (RL) with full access to privileged information in the form of the ground-truth state of the environment. 
+            This privileged training enables the teacher policy to discover the optimal behavior given perfect knowledge of the terrain. 
+            We then train a student policy that only has access to information that is available in the field on the physical robot. The student policy is built around our belief state encoder and trained via imitation learning. The student policy learns to predict the teacher's optimal action given only partial and noisy observations of the environment.
           </p>
         </div>
       </div>
@@ -230,10 +228,37 @@
       <div class="column is-full-width is-centered has-text-centered">
         <img src="resources/figures/2022_SCIRO_PerceptiveLoco_Network_Student_Details.png" width="90%">
       </div>
-
     </div>
 
     <h3 class="title is-3" style="text-align: center;">Noise Model</h3>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-two-thirds">
+        <div class="content has-text-justified">
+        <p>
+          <strong>Two different types of measurement noise</strong> are applied when sampling the heights:
+          <ol>
+            <li>Shifting scan points laterally.</li>
+            <li>Perturbing the height values.</li>
+          </ol>
+          Each noise value is sampled from a <strong>Gaussian distribution</strong>, and the noise parameter z defines the variance. 
+          Both types of noise are applied in <strong>three different scopes</strong>, all with their own noise variance:
+          <ol>
+            <li>per scan point</li>
+            <li>per foot</li>
+            <li>per episode</li>
+          </ol>
+          In addition, <strong>three mapping conditions</strong> are defined with associated noise parameters z to simulate changing map quality and error sources:
+          <ol>
+            <li>Nominal noise assuming good map quality during regular operation.</li>
+            <li>Large offsets through high per-foot noise to simulate map offsets due to pose estimation drift or deformable terrain.</li>
+            <li>Large noise magnitude for each scan point to simulate complete lack of terrain information due to occlusion or mapping failure.</li>
+          </ol>
+          These three mapping conditions are selected at the beginning of each training episode in a ratio of 60%, 30%, and 10%.
+          For more implementation details, please refer to the <a href="https://www.science.org/doi/10.1126/scirobotics.abk2822#supplementary-materials">supplementary section</a> S8.
+        </p>
+        </div>
+      </div>
+    </div>
     <div class="columns is-centered">
       <div class="column is-full-width is-centered has-text-centered">
         <img src="resources/figures/2022_SCIRO_PerceptiveLoco_NoiseModel(3).png" width="70%">
@@ -250,12 +275,12 @@
       <div class="column is-two-thirds">
         <div class="content has-text-justified">
         <p>
-          To showcase the efficacy of attetion mechanims, two policies of different architectures are trained:
+          To evaluate the effect of the attention gate, we compare the performance of the belief encoder with and without the gate. 
+          Two student policies are trained using different belief encoders:
           <ol>
-            <li>RNN: Recurrent Neural Network are applied to extract the temporal information of proprioception data and noisy exterpoception input;</li>
-            <li><strong>RNN-Attn</strong>: RNN-based policy with attention mechanism.</li>
-          </ol>
-          [Undone] 
+            <li><strong>RNN-Attn</strong>: a student policy that incorporates the attention mechanism;</li>
+            <li>RNN: a student policy that does not use an attention gate.</li>
+          </ol> 
         </p>
         </div>
       </div>
@@ -267,7 +292,7 @@
       <div class="column is-two-thirds">
         <div class="content has-text-justified">
         <p>
-          In each figure, the purple curve represents the <strong>RNN-Attn</strong> policy, while the yellow line denotes the RNN policy.
+          In each figure, the <span style="color: #973be7;">purple curve</span> represents the <strong style="color: #973be7;">RNN-Attn</strong> policy, while the <span style="color: #f9af0d;">yellow line</span> denotes the <span style="color: #f9af0d;">RNN</span> policy.
         </p>
         <p>
           Performance: Both <strong>RNN-Attn</strong> and RNN show a rapid increase initially and stabilize around 1000 steps after 100 iterations.
@@ -299,7 +324,8 @@
       <div class="column is-two-thirds">
         <div class="content has-text-justified">
         <p>
-          Losses
+          Losses: The attention gate significantly enhances the decoder's reconstruction capability by selectively regulating the passage of exteroceptive information.
+          When the exteroceptive sensor is severely affected by environmental noise, the decoder becomes less dependent on this information, improving robustness.
         </p>
         </div>
       </div>
@@ -395,7 +421,7 @@
         <div class="column is-two-thirds">
           <div class="content has-text-justified">
           <p>
-            We also conducted another set of experiments with a lower noise level.
+            Another set of experiments are also conducted with a lower noise level.
           </p>
           </div>
         </div>
